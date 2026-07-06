@@ -11,6 +11,14 @@
 
 ---
 
+## Quick start
+
+```bash
+git clone https://github.com/technika11y/pdf-ua-linter && cd pdf-ua-linter
+pip install pypdf
+PYTHONPATH=src python3 -m pdfua.cli document.pdf   # point it at any PDF
+```
+
 ## Status — read this first
 
 **Pre-alpha (`v0.1.0a0`). Honest state of the code:**
