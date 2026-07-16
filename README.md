@@ -30,6 +30,8 @@ PYTHONPATH=src python3 -m pdfua.cli document.pdf   # point it at any PDF
 | Rule: title shown in title bar (DisplayDocTitle) — `07-001` | ✅ works, tested |
 | Rule: natural language set + well-formed — `11-001` | ✅ works, tested |
 | Rule: every figure has alt text — `13-004` | ✅ works, tested |
+| Rule: title isn't a filename/authoring-tool artifact — `06-004` | ✅ works, tested |
+| Rule: figure alt isn't a placeholder ("image", "logo", …) — `13-004` | ✅ works, tested |
 | PDF fact extraction via pypdf | ⚠️ works, **not yet covered by automated tests** (needs a sample-PDF corpus) |
 | Figure→page attribution, reading order, tables, contrast, artifacts | ❌ not built — [roadmap](#roadmap) |
 

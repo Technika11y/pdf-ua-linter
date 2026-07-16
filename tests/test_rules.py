@@ -45,6 +45,22 @@ class RulesTests(unittest.TestCase):
         f = next(x for x in check(dict(GOOD, tagged=False)) if x["rule"] == "pdfua-not-tagged")
         self.assertEqual(f["checkpoint"], "01-005")
 
+    def test_title_that_is_a_filename_warns(self):
+        self.assertIn("pdfua-title-is-filename", [f["rule"] for f in check(dict(GOOD, title="Report.pdf"))])
+
+    def test_authoring_tool_title_warns(self):
+        self.assertIn("pdfua-title-is-filename", [f["rule"] for f in check(dict(GOOD, title="Microsoft Word - draft"))])
+
+    def test_descriptive_title_is_not_flagged(self):
+        self.assertNotIn("pdfua-title-is-filename", [f["rule"] for f in check(GOOD)])
+
+    def test_placeholder_figure_alt_warns(self):
+        facts = dict(GOOD, figures=[{"alt": "image", "page": 1}])
+        self.assertIn("pdfua-figure-alt-placeholder", [f["rule"] for f in check(facts)])
+
+    def test_descriptive_figure_alt_not_flagged(self):
+        self.assertNotIn("pdfua-figure-alt-placeholder", [f["rule"] for f in check(GOOD)])
+
 
 if __name__ == "__main__":
     unittest.main()
