@@ -10,6 +10,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(prog="pdf-ua-linter")
     parser.add_argument("pdf", help="path to a PDF file")
     parser.add_argument("--json", action="store_true", help="emit findings as JSON")
+    parser.add_argument("--sarif", action="store_true", help="emit SARIF 2.1.0 for code scanning")
     args = parser.parse_args(argv)
 
     from .extract import extract_facts  # lazy: only needs pypdf when a file is actually linted
@@ -17,7 +18,11 @@ def main(argv=None):
     facts = extract_facts(args.pdf)
     findings = check(facts)
 
-    if args.json:
+    if args.sarif:
+        import json
+        from .sarif import to_sarif
+        print(json.dumps(to_sarif(findings, args.pdf), indent=2))
+    elif args.json:
         import json
         print(json.dumps({"file": args.pdf, "facts": facts, "findings": findings}, indent=2))
     else:

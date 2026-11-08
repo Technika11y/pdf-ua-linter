@@ -33,6 +33,7 @@ PYTHONPATH=src python3 -m pdfua.cli document.pdf   # point it at any PDF
 | Rule: every figure has alt text — `13-004` | ✅ works, tested |
 | Rule: title isn't a filename/authoring-tool artifact — `06-004` | ✅ works, tested |
 | Rule: figure alt isn't a placeholder ("image", "logo", …) — `13-004` | ✅ works, tested |
+| **SARIF 2.1.0 output** (`--sarif`), each rule carrying its Matterhorn checkpoint | ✅ works, tested |
 | PDF fact extraction via pypdf | ⚠️ works, **not yet covered by automated tests** (needs a sample-PDF corpus) |
 | Figure→page attribution, reading order, tables, contrast, artifacts | ❌ not built — [roadmap](#roadmap) |
 
@@ -68,7 +69,8 @@ Exit `1` on any error-severity finding — drops into CI to gate document publis
 - [ ] Attribute figures to page numbers (via `/Pg`)
 - [ ] Reading-order and table-structure checks
 - [ ] Colour-contrast and artifact checks
-- [ ] SARIF output + the shared Technika11y CI gate
+- [x] SARIF output for GitHub code scanning
+- [ ] The shared Technika11y CI gate
 
 ## License
 
